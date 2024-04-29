@@ -23,8 +23,6 @@ payload = {
     "exp": datetime.datetime.now(datetime.UTC) + datetime.timedelta(seconds=3600)  # Expira en 1 hora
 }
 
-encoded_jwt = jwt.encode(payload, private_pem, algorithm="RS256")
-print(encoded_jwt)
 
 
 public_key = private_key.public_key()
@@ -34,8 +32,3 @@ public_pem = public_key.public_bytes(
 )
 
 
-try:
-    decoded_jwt = jwt.decode(encoded_jwt, public_pem, algorithms=["RS256"])
-    print("JWT verificado exitosamente. Payload:", decoded_jwt)
-except jwt.exceptions.InvalidTokenError:
-    print("El JWT es inválido.")
